@@ -84,7 +84,6 @@ class BigQueryDenormalizedDestinationTest {
           .withData(getDataWithJSONWithReference())
           .withEmittedAt(NOW.toEpochMilli()));
 
-
   private JsonNode config;
 
   private BigQuery bigquery;

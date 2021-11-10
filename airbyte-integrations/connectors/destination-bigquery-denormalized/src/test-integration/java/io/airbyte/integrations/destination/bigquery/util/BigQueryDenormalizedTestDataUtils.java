@@ -208,7 +208,7 @@ public class BigQueryDenormalizedTestDataUtils {
             + "  \"users\" :{\n"
             + "    \"name\": \"John\",\n"
             + "    \"surname\": \"Adams"
-            +"\"\n"
+            + "\"\n"
             + "  }\n"
             + "}");
   }
@@ -218,7 +218,7 @@ public class BigQueryDenormalizedTestDataUtils {
         "{ \n"
             + "  \"type\" : [ \"null\", \"object\" ],\n"
             + "  \"properties\" : {\n"
-            +"    \"users\": {\n"
+            + "    \"users\": {\n"
             + "      \"$ref\": \"#/definitions/users_\"\n"
             +
             "    }\n"
