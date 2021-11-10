@@ -140,7 +140,7 @@ public class OAuthConfigSupplierTest {
     final JsonNode actualConfig = maskingSupplier.injectSourceOAuthParameters(sourceDefinitionId, workspaceId, Jsons.clone(config));
     final ObjectNode expectedConfig = ((ObjectNode) Jsons.clone(config));
     for (final String key : oauthParameters.keySet()) {
-      expectedConfig.set(key, Jsons.jsonNode(OAuthConfigSupplier.SECRET_MASK));
+      expectedConfig.set(key, Jsons.getSecretMask());
     }
     assertEquals(expectedConfig, actualConfig);
     assertNoTracking();
@@ -165,14 +165,13 @@ public class OAuthConfigSupplierTest {
       if (node.get(key).getNodeType() == JsonNodeType.OBJECT) {
         maskAllValues((ObjectNode) node.get(key));
       } else {
-        node.set(key, Jsons.jsonNode(OAuthConfigSupplier.SECRET_MASK));
+        node.set(key, Jsons.getSecretMask());
       }
     }
   }
 
   @Test
   void testInjectUnnestedNode_Masked() {
-    final OAuthConfigSupplier supplier = new OAuthConfigSupplier(configRepository, true, trackingClient);
     final ObjectNode oauthParams = (ObjectNode) Jsons.jsonNode(generateOAuthParameters());
     final ObjectNode maskedOauthParams = Jsons.clone(oauthParams);
     maskAllValues(maskedOauthParams);
@@ -180,21 +179,20 @@ public class OAuthConfigSupplierTest {
     final ObjectNode expected = Jsons.clone(actual);
     expected.setAll(maskedOauthParams);
 
-    supplier.injectJsonNode(actual, oauthParams);
+    Jsons.mergeJsons(actual, oauthParams, Jsons.getSecretMask());
     assertEquals(expected, actual);
     assertNoTracking();
   }
 
   @Test
   void testInjectUnnestedNode_Unmasked() {
-    final OAuthConfigSupplier supplier = new OAuthConfigSupplier(configRepository, false, trackingClient);
     final ObjectNode oauthParams = (ObjectNode) Jsons.jsonNode(generateOAuthParameters());
 
     final ObjectNode actual = generateJsonConfig();
     final ObjectNode expected = Jsons.clone(actual);
     expected.setAll(oauthParams);
 
-    supplier.injectJsonNode(actual, oauthParams);
+    Jsons.mergeJsons(actual, oauthParams);
 
     assertEquals(expected, actual);
     assertNoTracking();
@@ -202,7 +200,6 @@ public class OAuthConfigSupplierTest {
 
   @Test
   void testInjectNewNestedNode_Masked() {
-    final OAuthConfigSupplier supplier = new OAuthConfigSupplier(configRepository, true, trackingClient);
     final ObjectNode oauthParams = (ObjectNode) Jsons.jsonNode(generateOAuthParameters());
     final ObjectNode maskedOauthParams = Jsons.clone(oauthParams);
     maskAllValues(maskedOauthParams);
@@ -215,7 +212,7 @@ public class OAuthConfigSupplierTest {
     final ObjectNode expected = Jsons.clone(actual);
     expected.putObject("oauth_credentials").setAll(maskedOauthParams);
 
-    supplier.injectJsonNode(actual, nestedConfig);
+    Jsons.mergeJsons(actual, nestedConfig, Jsons.getSecretMask());
     assertEquals(expected, actual);
     assertNoTracking();
   }
@@ -223,7 +220,6 @@ public class OAuthConfigSupplierTest {
   @Test
   @DisplayName("A nested config should be inserted with the same nesting structure")
   void testInjectNewNestedNode_Unmasked() {
-    final OAuthConfigSupplier supplier = new OAuthConfigSupplier(configRepository, false, trackingClient);
     final ObjectNode oauthParams = (ObjectNode) Jsons.jsonNode(generateOAuthParameters());
     final ObjectNode nestedConfig = (ObjectNode) Jsons.jsonNode(ImmutableMap.builder()
         .put("oauth_credentials", oauthParams)
@@ -234,7 +230,8 @@ public class OAuthConfigSupplierTest {
     final ObjectNode expected = Jsons.clone(actual);
     expected.putObject("oauth_credentials").setAll(oauthParams);
 
-    supplier.injectJsonNode(actual, nestedConfig);
+    Jsons.mergeJsons(actual, nestedConfig);
+
     assertEquals(expected, actual);
     assertNoTracking();
   }
@@ -242,7 +239,6 @@ public class OAuthConfigSupplierTest {
   @Test
   @DisplayName("A nested node which partially exists in the main config should be merged into the main config, not overwrite the whole nested object")
   void testInjectedPartiallyExistingNestedNode_Unmasked() {
-    final OAuthConfigSupplier supplier = new OAuthConfigSupplier(configRepository, false, trackingClient);
     final ObjectNode oauthParams = (ObjectNode) Jsons.jsonNode(generateOAuthParameters());
     final ObjectNode nestedConfig = (ObjectNode) Jsons.jsonNode(ImmutableMap.builder()
         .put("oauth_credentials", oauthParams)
@@ -254,7 +250,8 @@ public class OAuthConfigSupplierTest {
     final ObjectNode expected = Jsons.clone(actual);
     ((ObjectNode) expected.get("oauth_credentials")).setAll(oauthParams);
 
-    supplier.injectJsonNode(actual, nestedConfig);
+    Jsons.mergeJsons(actual, nestedConfig);
+
     assertEquals(expected, actual);
     assertNoTracking();
   }

@@ -4,6 +4,7 @@
 
 package io.airbyte.oauth;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import io.airbyte.config.persistence.ConfigNotFoundException;
 import java.io.IOException;
 import java.util.Map;
@@ -15,10 +16,28 @@ public interface OAuthFlowImplementation {
 
   String getDestinationConsentUrl(UUID workspaceId, UUID destinationDefinitionId, String redirectUrl) throws IOException, ConfigNotFoundException;
 
+  @Deprecated
   Map<String, Object> completeSourceOAuth(UUID workspaceId, UUID sourceDefinitionId, Map<String, Object> queryParams, String redirectUrl)
       throws IOException, ConfigNotFoundException;
 
+  Map<String, Object> completeSourceOAuth(UUID workspaceId,
+                                          UUID sourceDefinitionId,
+                                          Map<String, Object> queryParams,
+                                          String redirectUrl,
+                                          JsonNode inputOAuthConfiguration,
+                                          JsonNode outputOAuthSpecification)
+      throws IOException, ConfigNotFoundException;
+
+  @Deprecated
   Map<String, Object> completeDestinationOAuth(UUID workspaceId, UUID destinationDefinitionId, Map<String, Object> queryParams, String redirectUrl)
+      throws IOException, ConfigNotFoundException;
+
+  Map<String, Object> completeDestinationOAuth(UUID workspaceId,
+                                               UUID destinationDefinitionId,
+                                               Map<String, Object> queryParams,
+                                               String redirectUrl,
+                                               JsonNode inputOAuthConfiguration,
+                                               JsonNode outputOAuthSpecification)
       throws IOException, ConfigNotFoundException;
 
 }
