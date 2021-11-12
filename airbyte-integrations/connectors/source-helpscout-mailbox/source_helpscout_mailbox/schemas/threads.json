@@ -1,0 +1,224 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": [
+                "number"
+            ]
+        },
+        "assignedTo": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "properties": {
+                "id": {
+                    "type": "number"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "first": {
+                    "type": "string"
+                },
+                "last": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "photoUrl": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            }
+        },
+        "status": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "state": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "action": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "properties": {
+                "type": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "text": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "associatedEntities": {
+                    "type": [
+                        "object",
+                        "null"
+                    ]
+                }
+            }
+        },
+        "body": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "source": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "properties": {
+                "type": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "via": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            }
+        },
+        "customer": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "properties": {
+                "id": {
+                    "type": [
+                        "number"
+                    ]
+                },
+                "first": {
+                    "type": [
+                        "string"
+                    ]
+                },
+                "last": {
+                    "type": [
+                        "string"
+                    ]
+                },
+                "photoUrl": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "email": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            }
+        },
+        "createdBy": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "properties": {
+                "id": {
+                    "type": [
+                        "number"
+                    ]
+                },
+                "first": {
+                    "type": [
+                        "string"
+                    ]
+                },
+                "last": {
+                    "type": [
+                        "string"
+                    ]
+                },
+                "photoUrl": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "email": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            }
+        },
+        "createdAt": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "format": "date-time"
+        },
+        "openedAt": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "format": "date-time"
+        },
+        "savedReplyId": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "type": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "to": {
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "cc": {
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "bcc": {
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "linkedConversationId": {
+            "type": [
+                "string",
+                "null"
+            ]
+        }
+    }
+}

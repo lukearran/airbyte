@@ -1,0 +1,46 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": [
+                "number"
+            ]
+        },
+        "name": {
+            "type": [
+                "string"
+            ]
+        },
+        "slug": {
+            "type": [
+                "string"
+            ]
+        },
+        "ticketCount": {
+            "type": [
+                "number"
+            ]
+        },
+        "color": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "createdAt": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "format": "date-time"
+        },
+        "updatedAt": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "format": "date-time"
+        }
+    }
+}

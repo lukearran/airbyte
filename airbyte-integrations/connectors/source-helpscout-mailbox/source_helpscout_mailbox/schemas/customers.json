@@ -1,0 +1,91 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": [
+                "number"
+            ]
+        },
+        "firstName": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "lastName": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "phone": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "photoUrl": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "jobTitle": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "photoType": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "background": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "location": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "organization": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "gender": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "age": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "createdAt": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "format": "date-time"
+        },
+        "updatedAt": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "format": "date-time"
+        }
+    }
+}

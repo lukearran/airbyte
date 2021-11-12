@@ -578,3 +578,9 @@
   dockerImageTag: 0.1.0
   documentationUrl: https://docs.airbyte.io/integrations/sources/lever-onesignal
   sourceType: api
+- sourceDefinitionId: 4746319c-df9d-4c25-90cc-0f6495ca711d
+  name: source_helpscout_mailbox
+  dockerRepository: airbyte/source-helpscout-mailbox
+  dockerImageTag: dev
+  documentationUrl: https://docs.airbyte.io/integrations/sources/
+  sourceType: api

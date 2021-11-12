@@ -1,0 +1,43 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "url": {
+            "type": [
+                "string"
+            ]
+        },
+        "events": {
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "notification": {
+            "type": [
+                "boolean"
+            ]
+        },
+        "label": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "payloadVersion": {
+            "type": [
+                "string"
+            ]
+        },
+        "state": {
+            "type": [
+                "string"
+            ]
+        },
+        "id": {
+            "type": [
+                "number"
+            ]
+        }
+    }
+}

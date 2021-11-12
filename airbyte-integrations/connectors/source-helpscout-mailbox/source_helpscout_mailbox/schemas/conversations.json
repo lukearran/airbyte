@@ -1,0 +1,294 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": [
+                "number"
+            ]
+        },
+        "number": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "type": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "folderId": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "status": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "state": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "subject": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "preview": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "mailboxId": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "assignee": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "properties": {
+                "id": {
+                    "type": "number"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "first": {
+                    "type": "string"
+                },
+                "last": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                }
+            }
+        },
+        "createdBy": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "properties": {
+                "id": {
+                    "type": [
+                        "number"
+                    ]
+                },
+                "type": {
+                    "type": [
+                        "string"
+                    ]
+                },
+                "first": {
+                    "type": [
+                        "string"
+                    ]
+                },
+                "last": {
+                    "type": [
+                        "string"
+                    ]
+                },
+                "email": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "photoUrl": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            }
+        },
+        "createdAt": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "format": "date-time"
+        },
+        "closedBy": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "closedAt": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "format": "date-time"
+        },
+        "userUpdatedAt": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "format": "date-time"
+        },
+        "customerWaitingSince": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "properties": {
+                "time": {
+                    "type": [
+                        "null",
+                        "string"
+                    ],
+                    "format": "date-time"
+                },
+                "friendly": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            }
+        },
+        "source": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "properties": {
+                "type": {
+                    "type": [
+                        "null",
+                        "string"
+                    ]
+                },
+                "via": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            }
+        },
+        "tags": {
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "cc": {
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "bcc": {
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "primaryCustomer": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "properties": {
+                "id": {
+                    "type": [
+                        "number"
+                    ]
+                },
+                "type": {
+                    "type": [
+                        "string"
+                    ]
+                },
+                "first": {
+                    "type": [
+                        "string"
+                    ]
+                },
+                "last": {
+                    "type": [
+                        "string"
+                    ]
+                },
+                "email": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "photoUrl": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            }
+        },
+        "customFields": {
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "closedByUser": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "properties": {
+                "id": {
+                    "type": [
+                        "number"
+                    ]
+                },
+                "type": {
+                    "type": [
+                        "string"
+                    ]
+                },
+                "first": {
+                    "type": [
+                        "string"
+                    ]
+                },
+                "last": {
+                    "type": [
+                        "string"
+                    ]
+                },
+                "email": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "photoUrl": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            }
+        }
+    }
+}
