@@ -22,14 +22,16 @@ class MockResponse:
 def patch_base_class(mocker):
     # Mock abstract methods to enable instantiating abstract class
     mocker.patch.object(HelpscoutMailboxStream, "path", "v0/example_endpoint")
-    mocker.patch.object(HelpscoutMailboxStream, "primary_key", "test_primary_key")
+    mocker.patch.object(HelpscoutMailboxStream,
+                        "primary_key", "test_primary_key")
     mocker.patch.object(HelpscoutMailboxStream, "__abstractmethods__", set())
 
 
 def test_next_page_token(patch_base_class):
-    stream = HelpscoutMailboxStream("", {})
+    stream = HelpscoutMailboxStream("", "", {})
 
-    inputs = {"response": MockResponse({"page": {"size": 50, "totalElements": 1, "totalPages": 2, "number": 1}}, 200)}
+    inputs = {"response": MockResponse(
+        {"page": {"size": 50, "totalElements": 1, "totalPages": 2, "number": 1}}, 200)}
 
     expected_token = {"next_page_number": 2}
 
@@ -37,7 +39,7 @@ def test_next_page_token(patch_base_class):
 
 
 def test_parse_response(patch_base_class):
-    stream = Conversations("", {})
+    stream = Conversations("", "conversations", {})
 
     inputs = {
         "response": MockResponse(
@@ -49,7 +51,8 @@ def test_parse_response(patch_base_class):
         )
     }
 
-    expected_parsed_object = [{"id": 1678805282, "number": 5, "threads": 1, "type": "email"}]
+    expected_parsed_object = [
+        {"id": 1678805282, "number": 5, "threads": 1, "type": "email"}]
 
     assert stream.parse_response(**inputs) == expected_parsed_object
 
@@ -66,12 +69,12 @@ def test_parse_response(patch_base_class):
 def test_should_retry(patch_base_class, http_status, should_retry):
     response_mock = MagicMock()
     response_mock.status_code = http_status
-    stream = HelpscoutMailboxStream("", None)
+    stream = HelpscoutMailboxStream("", "", None)
     assert stream.should_retry(response_mock) == should_retry
 
 
 def test_backoff_time(patch_base_class):
     response_mock = MagicMock()
-    stream = HelpscoutMailboxStream("", None)
+    stream = HelpscoutMailboxStream("", "", None)
     expected_backoff_time = None
     assert stream.backoff_time(response_mock) == expected_backoff_time

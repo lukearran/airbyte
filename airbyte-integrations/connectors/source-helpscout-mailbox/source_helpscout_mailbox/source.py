@@ -33,8 +33,7 @@ class HelpscoutAuthenticator:
     # Client Credentials.
     def getAccessToken(self):
         if not self.client_id or not self.client_secret:
-            raise HelpscoutInvalidCredentials(
-                "Client Id or Client Secret cannot be null or empty.")
+            raise HelpscoutInvalidCredentials("Client Id or Client Secret cannot be null or empty.")
 
         # Set the URL of the API request
         url = "https://api.helpscout.net/v2/oauth2/token"
@@ -42,8 +41,7 @@ class HelpscoutAuthenticator:
         # Set the payload for the HTTP request.
         # Include Client Id, Client Secret and Grant Type
         # to authorised using the Client Credentials oAuth flow.
-        payload = json.dumps({"grant_type": "client_credentials",
-                             "client_id": self.client_id, "client_secret": self.client_secret})
+        payload = json.dumps({"grant_type": "client_credentials", "client_id": self.client_id, "client_secret": self.client_secret})
 
         # Set the headers
         headers = {"Content-Type": "application/json"}
@@ -63,8 +61,7 @@ class HelpscoutAuthenticator:
 
         else:
             # Handle a bad response
-            raise HelpscoutInvalidCredentials(
-                "Help Scout API responded unexpected upon requesting an oAuth Access Token.")
+            raise HelpscoutInvalidCredentials("Help Scout API responded unexpected upon requesting an oAuth Access Token.")
 
 
 # Basic full refresh stream
@@ -119,7 +116,9 @@ class ChildStreamMixin:
     parent_stream_class: Optional[HelpscoutMailboxStream] = None
 
     def stream_slices(self, sync_mode, **kwargs) -> Iterable[Optional[Mapping[str, any]]]:
-        for item in self.parent_stream_class(self.access_token, self.parent_stream_model, config=self.config).read_records(sync_mode=sync_mode):
+        for item in self.parent_stream_class(self.access_token, self.parent_stream_model, config=self.config).read_records(
+            sync_mode=sync_mode
+        ):
             yield {"id": item["id"]}
 
         yield from []
@@ -411,8 +410,7 @@ class SourceHelpscoutMailbox(AbstractSource):
                 return False, "Help Scout Mailbox - Client Secret must be provided."
 
             # Test the connection by requesting an Access Token
-            helpscoutMailbox = HelpscoutAuthenticator(
-                config["client_id"], config["client_secret"])
+            helpscoutMailbox = HelpscoutAuthenticator(config["client_id"], config["client_secret"])
             helpscoutMailbox.getAccessToken()
 
             return True, None
@@ -428,8 +426,7 @@ class SourceHelpscoutMailbox(AbstractSource):
 
         if "client_id" in config and "client_secret" in config:
             # Create an instance of the Helpscout API class
-            helpscoutMailbox = HelpscoutAuthenticator(
-                config["client_id"], config["client_secret"])
+            helpscoutMailbox = HelpscoutAuthenticator(config["client_id"], config["client_secret"])
 
             # Oauth2Authenticator is also available if you need oauth support
             token = helpscoutMailbox.getAccessToken()
